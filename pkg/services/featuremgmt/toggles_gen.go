@@ -486,4 +486,8 @@ const (
 	// FlagKubernetesPlaylists
 	// Use the kubernetes API in the frontend for playlists
 	FlagKubernetesPlaylists = "kubernetesPlaylists"
+
+	// FlagAlertingSaveStateAsync
+	// Writes the state only on a given interval to database
+	FlagAlertingSaveStateAsync = "alertingSaveStateAsync"
 )
