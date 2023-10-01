@@ -1,14 +1,30 @@
 import { AbstractLabelOperator, CoreApp, DataSourceInstanceSettings, PluginMetaInfo, PluginType } from '@grafana/data';
+import { setBackendSrv, getBackendSrv } from '@grafana/runtime';
 import { TemplateSrv } from 'app/features/templating/template_srv';
 
 import { defaultPyroscopeQueryType } from './dataquery.gen';
 import { normalizeQuery, PyroscopeDataSource } from './datasource';
 import { Query } from './types';
 
+/** When the datasource checks for the presence of the app, it will check for grafana-pyroscope-app. This makes it fail */
+export function mockFetchPyroscopeAppPluginNotFound() {
+  setBackendSrv({
+    ...getBackendSrv(),
+    get: (path: string) => {
+      // Mock GCOM plugins (remote) if necessary
+      if (path === `/api/plugins/grafana-pyroscope-app/settings`) {
+        return Promise.reject({ message: 'Plugin not found, no installed plugin with that id' });
+      }
+      return Promise.reject('unexpected endpoint');
+    },
+  });
+}
+
 describe('Pyroscope data source', () => {
   let ds: PyroscopeDataSource;
   beforeEach(() => {
     ds = new PyroscopeDataSource(defaultSettings);
+    mockFetchPyroscopeAppPluginNotFound(); // No pyroscope app installed
   });
 
   describe('importing queries', () => {

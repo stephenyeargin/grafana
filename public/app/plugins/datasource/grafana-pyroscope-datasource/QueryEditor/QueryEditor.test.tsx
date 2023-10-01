@@ -5,11 +5,16 @@ import React from 'react';
 import { CoreApp, PluginType } from '@grafana/data';
 
 import { PyroscopeDataSource } from '../datasource';
+import { mockFetchPyroscopeAppPluginNotFound } from '../datasource.test';
 import { ProfileTypeMessage } from '../types';
 
 import { Props, QueryEditor } from './QueryEditor';
 
 describe('QueryEditor', () => {
+  beforeEach(() => {
+    mockFetchPyroscopeAppPluginNotFound(); // No pyroscope app installed
+  });
+
   it('should render without error', async () => {
     setup();
 
