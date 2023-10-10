@@ -723,7 +723,6 @@ export const runLoadMoreQueries = createAsyncThunk<void, RunLoadMoreQueriesOptio
     const interpolateCorrelationHelperVars =
       isCorrelationEditorMode && !isLeftPane && correlationEditorHelperData !== undefined;
     let newQuerySource: Observable<ExplorePanelData>;
-    let newQuerySubscription: SubscriptionLike;
 
     // Filter queries by those explicitly requested by refId
     const queries = exploreQueries.map((query) => ({
@@ -785,7 +784,7 @@ export const runLoadMoreQueries = createAsyncThunk<void, RunLoadMoreQueriesOptio
       )
     );
 
-    newQuerySubscription = newQuerySource.subscribe({
+    newQuerySource.subscribe({
       next(data) {
         if (data.logsResult !== null && data.state === LoadingState.Done) {
           reportInteraction('grafana_explore_logs_result_displayed', {
