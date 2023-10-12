@@ -164,7 +164,7 @@ var (
 		{
 			Name:         "dockedMegaMenu",
 			Description:  "Enable support for a persistent (docked) navigation menu",
-			Stage:        FeatureStagePublicPreview,
+			Stage:        FeatureStageExperimental,
 			FrontendOnly: true,
 			Owner:        grafanaFrontendPlatformSquad,
 		},
@@ -330,14 +330,6 @@ var (
 			Stage:        FeatureStageExperimental,
 			FrontendOnly: true,
 			Owner:        appO11ySquad,
-		},
-		{
-			Name:         "prometheusResourceBrowserCache",
-			Description:  "Displays browser caching options in Prometheus data source configuration",
-			Stage:        FeatureStageGeneralAvailability,
-			FrontendOnly: true,
-			Expression:   "true", // turned on by default
-			Owner:        grafanaObservabilityMetricsSquad,
 		},
 		{
 			Name:         "influxdbBackendMigration",
@@ -696,14 +688,6 @@ var (
 			RequiresRestart: false,
 		},
 		{
-			Name:            "noBasicRole",
-			Description:     "Enables a new role that has no permissions by default",
-			Stage:           FeatureStageExperimental,
-			FrontendOnly:    true,
-			Owner:           grafanaAuthnzSquad,
-			RequiresRestart: true,
-		},
-		{
 			Name:            "alertingNoDataErrorExecution",
 			Description:     "Changes how Alerting state manager handles execution of NoData/Error",
 			Stage:           FeatureStagePrivatePreview,
@@ -753,6 +737,14 @@ var (
 			Stage:        FeatureStageExperimental,
 			FrontendOnly: false,
 			Owner:        grafanaPluginsPlatformSquad,
+		},
+		{
+			Name:            "libraryPanelRBAC",
+			Description:     "Enables RBAC support for library panels",
+			Stage:           FeatureStageExperimental,
+			FrontendOnly:    false,
+			Owner:           grafanaDashboardsSquad,
+			RequiresRestart: true,
 		},
 		{
 			Name:         "lokiRunQueriesInParallel",
@@ -851,6 +843,28 @@ var (
 			FrontendOnly: true,
 			Stage:        FeatureStageExperimental,
 			Owner:        grafanaAppPlatformSquad,
+		},
+		{
+			Name:         "navAdminSubsections",
+			Description:  "Splits the administration section of the nav tree into subsections",
+			Stage:        FeatureStageExperimental,
+			FrontendOnly: false,
+			Owner:        grafanaFrontendPlatformSquad,
+		},
+		{
+			Name:            "recoveryThreshold",
+			Description:     "Enables feature recovery threshold (aka hysteresis) for threshold server-side expression",
+			Stage:           FeatureStageExperimental,
+			FrontendOnly:    false,
+			Owner:           grafanaAlertingSquad,
+			RequiresRestart: true,
+		},
+		{
+			Name:         "awsDatasourcesNewFormStyling",
+			Description:  "Applies new form styling for configuration and query editors in AWS plugins",
+			Stage:        FeatureStageExperimental,
+			FrontendOnly: true,
+			Owner:        awsDatasourcesSquad,
 		},
 	}
 )
