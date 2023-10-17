@@ -55,6 +55,8 @@ interface LogsContainerProps extends PropsFromRedux {
   splitOpenFn: SplitOpen;
   scrollElement?: HTMLDivElement;
   isFilterLabelActive: (key: string, value: string, refId?: string) => Promise<boolean>;
+  onClickFilterValue: (value: string, refId?: string) => void;
+  onClickFilterOutValue: (value: string, refId?: string) => void;
 }
 
 interface LogsContainerState {
@@ -265,6 +267,8 @@ class LogsContainer extends PureComponent<LogsContainerProps, LogsContainerState
             scrollElement={scrollElement}
             isFilterLabelActive={logDetailsFilterAvailable ? this.props.isFilterLabelActive : undefined}
             range={range}
+            onClickFilterValue={this.props.onClickFilterValue}
+            onClickFilterOutValue={this.props.onClickFilterOutValue}
           />
         </LogsCrossFadeTransition>
       </>
