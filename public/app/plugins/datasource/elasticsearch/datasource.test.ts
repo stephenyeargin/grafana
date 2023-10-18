@@ -1234,19 +1234,19 @@ describe('modifyQuery', () => {
     });
   });
 
-  describe('ADD_LINE_FILTER and ADD_LINE_FILTER_OUT', () => {
+  describe('ADD_STRING_FILTER and ADD_STRING_FILTER_OUT', () => {
     beforeEach(() => {
       query = { query: '', refId: 'A' };
     });
 
     it('should add the filter', () => {
-      expect(ds.modifyQuery(query, { type: 'ADD_LINE_FILTER', options: { value: 'bar' } }).query).toBe(
+      expect(ds.modifyQuery(query, { type: 'ADD_STRING_FILTER', options: { value: 'bar' } }).query).toBe(
         '"bar"'
       );
     });
 
     it('should add the negative filter', () => {
-      expect(ds.modifyQuery(query, { type: 'ADD_LINE_FILTER_OUT', options: { value: 'bar' } }).query).toBe(
+      expect(ds.modifyQuery(query, { type: 'ADD_STRING_FILTER_OUT', options: { value: 'bar' } }).query).toBe(
         'NOT "bar"'
       );
     });
@@ -1259,13 +1259,13 @@ describe('modifyQuery', () => {
     });
 
     it('should add the filter', () => {
-      expect(ds.modifyQuery(query, { type: 'ADD_LINE_FILTER', options: { value: 'bar' } }).query).toBe(
+      expect(ds.modifyQuery(query, { type: 'ADD_STRING_FILTER', options: { value: 'bar' } }).query).toBe(
         'test:"value" AND "bar"'
       );
     });
 
     it('should add the negative filter', () => {
-      expect(ds.modifyQuery(query, { type: 'ADD_LINE_FILTER_OUT', options: { value: 'bar' } }).query).toBe(
+      expect(ds.modifyQuery(query, { type: 'ADD_STRING_FILTER_OUT', options: { value: 'bar' } }).query).toBe(
         'test:"value" NOT "bar"'
       );
     });
