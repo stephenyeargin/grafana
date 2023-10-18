@@ -58,6 +58,7 @@ import { metricAggregationConfig } from './components/QueryEditor/MetricAggregat
 import { isMetricAggregationWithMeta } from './guards';
 import {
   addFilterToQuery,
+  addStringFilterToQuery,
   escapeFilter,
   escapeFilterValue,
   queryHasFilter,
@@ -943,6 +944,14 @@ export class ElasticDatasource
       }
       case 'ADD_FILTER_OUT': {
         expression = addFilterToQuery(expression, action.options.key, action.options.value, '-');
+        break;
+      }
+      case 'ADD_LINE_FILTER': {
+        expression = addStringFilterToQuery(expression, action.options.value);
+        break;
+      }
+      case 'ADD_LINE_FILTER_OUT': {
+        expression = addStringFilterToQuery(expression, action.options.value, false);
         break;
       }
     }
